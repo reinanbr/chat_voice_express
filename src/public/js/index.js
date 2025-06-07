@@ -18,7 +18,9 @@ window.onload = (e) => {
   mainFunction(1000);
 };
 
-const socket = io();
+const socket = io("https://chat-voice-express.vercel.app", {
+  transports: ["polling"]
+});
 
 socket.emit("userInformation", userStatus);
 

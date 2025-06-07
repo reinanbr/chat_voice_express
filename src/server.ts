@@ -3,11 +3,22 @@ import { createServer } from "http";
 import { Server } from "socket.io";
 import { create } from "express-handlebars";
 import path from "path";
+import cors from "cors";
 
 const app = express();
-const httpServer = createServer(app);
-const io = new Server(httpServer);
+app.use(cors({
+  origin: "*", // ou especifique: ["http://localhost:3000"]
+  methods: ["GET", "POST"]
+}));
 
+
+const httpServer = createServer(app);
+const io = new Server(httpServer, {
+  cors: {
+    origin: "*", // ou especifique: ["http://localhost:3000"]
+    methods: ["GET", "POST"]
+  }
+});
 interface UserStatus {
   online?: boolean;
   mute?: boolean;

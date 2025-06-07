@@ -49,7 +49,7 @@ io.on("connection", (socket) => {
         console.log("User disconnected:", socketId);
     });
 });
-httpServer.listen(3000, () => {
-    console.log("Server running at http://localhost:3000");
+httpServer.listen(process.env.PORT || 3000, () => {
+    console.log("Server running");
 });
 //# sourceMappingURL=server.js.map

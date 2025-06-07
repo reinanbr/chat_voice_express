@@ -8,9 +8,19 @@ const http_1 = require("http");
 const socket_io_1 = require("socket.io");
 const express_handlebars_1 = require("express-handlebars");
 const path_1 = __importDefault(require("path"));
+const cors_1 = __importDefault(require("cors"));
 const app = (0, express_1.default)();
+app.use((0, cors_1.default)({
+    origin: "*", // ou especifique: ["http://localhost:3000"]
+    methods: ["GET", "POST"]
+}));
 const httpServer = (0, http_1.createServer)(app);
-const io = new socket_io_1.Server(httpServer);
+const io = new socket_io_1.Server(httpServer, {
+    cors: {
+        origin: "*", // ou especifique: ["http://localhost:3000"]
+        methods: ["GET", "POST"]
+    }
+});
 const socketsStatus = {};
 // Config Handlebars
 const hbs = (0, express_handlebars_1.create)({
